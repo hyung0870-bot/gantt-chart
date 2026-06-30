@@ -241,28 +241,31 @@
   </div>
 
   <!-- Header -->
-  <header class="relative bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm px-6 py-4 flex flex-wrap items-center justify-between gap-4 z-50">
-    <div class="flex items-center gap-3">
-      <div class="bg-gradient-to-tr from-blue-600 to-indigo-600 p-2.5 rounded-xl text-white shadow-md shadow-blue-500/20">
-        <i class="fa-solid fa-network-wired text-xl"></i>
+  <header class="relative bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm px-4 py-1.5 flex flex-wrap items-center justify-between gap-3 z-50">
+    <div class="flex items-center gap-2">
+      <div class="bg-gradient-to-tr from-blue-600 to-indigo-600 p-1.5 rounded-lg text-white shadow-md shadow-blue-500/10">
+        <i class="fa-solid fa-network-wired text-xs"></i>
       </div>
       <div>
-        <h1 class="text-xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
+        <h1 class="text-xs font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
           Enterprise Gantt Scheduler
         </h1>
       </div>
     </div>
 
     <!-- Actions -->
-    <div class="flex items-center flex-wrap gap-2.5">
+    <div class="flex items-center flex-wrap gap-2">
       <!-- File Management Dropdown -->
       <div class="relative">
-        <button onclick="toggleFileDropdown(event)" class="px-3.5 py-2 text-sm font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center gap-2">
-          <i class="fa-solid fa-folder-open text-amber-500"></i> 파일 관리 <i class="fa-solid fa-chevron-down text-[10px]"></i>
+        <button onclick="toggleFileDropdown(event)" class="px-2.5 py-1 text-xs font-semibold rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-folder-open text-amber-500"></i> 파일 관리 <i class="fa-solid fa-chevron-down text-[9px]"></i>
         </button>
         <div id="file-dropdown-menu" class="hidden absolute left-0 mt-2 w-52 bg-white dark:bg-slate-850 rounded-lg border border-slate-200 dark:border-slate-700 shadow-xl z-100 py-1 text-xs">
           <button onclick="createNewProject()" class="w-full text-left px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
             <i class="fa-solid fa-file-circle-plus text-blue-500 w-4"></i> 새 프로젝트
+          </button>
+          <button onclick="loadDefaultProject()" class="w-full text-left px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
+            <i class="fa-solid fa-cloud-arrow-down text-teal-500 w-4"></i> 기본 일정 불러오기
           </button>
           <button onclick="saveProjectToLocal()" class="w-full text-left px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
             <i class="fa-solid fa-floppy-disk text-emerald-500 w-4"></i> 로컬 저장
@@ -287,84 +290,77 @@
       </div>
 
       <!-- Undo / Redo Actions -->
-      <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-0.5 rounded-lg mr-1">
-        <button onclick="undo()" id="btn-undo" title="실행 취소 (Ctrl+Z)" class="w-8 h-8 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition disabled:opacity-40" disabled>
+      <div class="flex items-center gap-0.5 bg-slate-100 dark:bg-slate-800 p-0.5 rounded-md mr-0.5">
+        <button onclick="undo()" id="btn-undo" title="실행 취소 (Ctrl+Z)" class="w-6 h-6 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition disabled:opacity-40 text-[10px]" disabled>
           <i class="fa-solid fa-arrow-rotate-left"></i>
         </button>
-        <button onclick="redo()" id="btn-redo" title="다시 실행 (Ctrl+Y)" class="w-8 h-8 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition disabled:opacity-40" disabled>
+        <button onclick="redo()" id="btn-redo" title="다시 실행 (Ctrl+Y)" class="w-6 h-6 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition disabled:opacity-40 text-[10px]" disabled>
           <i class="fa-solid fa-arrow-rotate-right"></i>
         </button>
       </div>
 
       <!-- Row Move Actions -->
-      <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-0.5 rounded-lg mr-1" title="작업 순서 변경">
-        <button onclick="moveSelectedTaskRow('up')" id="btn-move-up" title="작업 위로 올리기" class="w-8 h-8 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition">
+      <div class="flex items-center gap-0.5 bg-slate-100 dark:bg-slate-800 p-0.5 rounded-md mr-0.5" title="작업 순서 변경">
+        <button onclick="moveSelectedTaskRow('up')" id="btn-move-up" title="작업 위로 올리기" class="w-6 h-6 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition text-[10px]">
           <i class="fa-solid fa-arrow-up"></i>
         </button>
-        <button onclick="moveSelectedTaskRow('down')" id="btn-move-down" title="작업 아래로 내리기" class="w-8 h-8 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition">
+        <button onclick="moveSelectedTaskRow('down')" id="btn-move-down" title="작업 아래로 내리기" class="w-6 h-6 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition text-[10px]">
           <i class="fa-solid fa-arrow-down"></i>
         </button>
       </div>
 
       <!-- Custom Column Addition -->
-      <button onclick="openAddColumnModal()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
+      <button onclick="openAddColumnModal()" class="px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
         <i class="fa-solid fa-plus text-emerald-500"></i> 열 추가
       </button>
 
       <!-- WBS Freeze Panes -->
-      <button id="btn-freeze" onclick="toggleFreezePanes()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 text-slate-700 dark:text-slate-300" title="선택한 셀의 좌측 열들을 고정합니다.">
+      <button id="btn-freeze" onclick="toggleFreezePanes()" class="px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5 text-slate-700 dark:text-slate-300" title="선택한 셀의 좌측 열들을 고정합니다.">
         <i class="fa-solid fa-snowflake text-sky-500"></i> <span id="freeze-btn-text">틀고정 설정</span>
       </button>
 
       <!-- WBS Assignee Manager -->
-      <button onclick="openAssigneesModal()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
+      <button onclick="openAssigneesModal()" class="px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
         <i class="fa-solid fa-users text-blue-500"></i> 담당자 관리
       </button>
 
       <!-- MH Trend Chart Trigger -->
-      <button onclick="openMHTrendModal()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
+      <button onclick="openMHTrendModal()" class="px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
         <i class="fa-solid fa-chart-column text-amber-500"></i> MH 추이 차트
       </button>
 
-      <!-- Project Settings -->
-      <button onclick="openProjectSettingsModal()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
-        <i class="fa-solid fa-gear text-indigo-500"></i> 프로젝트 설정
-      </button>
-
       <!-- Holiday Settings -->
-      <button onclick="openHolidaySettingsModal()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
+      <button onclick="openHolidaySettingsModal()" class="px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
         <i class="fa-solid fa-umbrella text-rose-500"></i> 휴일 설정
       </button>
 
       <!-- Onboarding Tutorial Trigger -->
-      <button onclick="toggleTutorialGuide()" class="px-3.5 py-2 text-sm font-semibold rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/60 transition flex items-center gap-2">
+      <button onclick="toggleTutorialGuide()" class="px-2.5 py-1 text-xs font-semibold rounded-md bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/60 transition flex items-center gap-1.5">
         <i class="fa-solid fa-graduation-cap"></i> 초보자 가이드
       </button>
 
       <!-- Import/Export -->
-      <button onclick="triggerExcelImport()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2">
+      <button onclick="triggerExcelImport()" class="px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
         <i class="fa-solid fa-file-import text-blue-500"></i> Excel 불러오기
       </button>
       <input type="file" id="excel-file-input" class="hidden" accept=".xlsx, .xls" onchange="importExcel(event)">
       
-      <button onclick="exportToExcel()" class="px-3.5 py-2 text-sm font-medium rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition flex items-center gap-2 shadow-sm shadow-emerald-500/10">
+      <button onclick="exportToExcel()" class="px-2.5 py-1 text-xs font-semibold rounded-md bg-emerald-600 hover:bg-emerald-700 text-white transition flex items-center gap-1.5 shadow-sm shadow-emerald-500/10">
         <i class="fa-solid fa-file-export"></i> Excel 저장
       </button>
 
-      <button onclick="openPrintModal()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 text-slate-700 dark:text-slate-300" title="현재 화면을 A3 PDF로 인쇄합니다.">
+      <button onclick="openPrintModal()" class="px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5 text-slate-700 dark:text-slate-300" title="현재 화면을 A3 PDF로 인쇄합니다.">
         <i class="fa-solid fa-print text-purple-500"></i> PDF 인쇄 (A3)
       </button>
 
-
-
-      <button onclick="openAddTaskModal()" class="px-3.5 py-2 text-sm font-medium rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition flex items-center gap-2 shadow-sm shadow-blue-500/10">
+      <button onclick="openAddTaskModal()" class="px-2.5 py-1 text-xs font-semibold rounded-md bg-blue-600 hover:bg-blue-700 text-white transition flex items-center gap-1.5 shadow-sm shadow-blue-500/10">
         <i class="fa-solid fa-plus"></i> 작업 추가
       </button>
 
       <!-- Theme Switcher -->
-      <button onclick="toggleTheme()" class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition text-slate-500 dark:text-slate-400">
-        <i id="theme-icon" class="fa-solid fa-sun text-lg hidden dark:inline"></i>
-        <i id="theme-icon-dark" class="fa-solid fa-moon text-lg dark:hidden"></i>
+      <button onclick="toggleTheme()" class="p-1.5 rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition text-slate-500 dark:text-slate-400">
+        <i id="theme-icon" class="fa-solid fa-sun text-xs hidden dark:inline"></i>
+        <i id="theme-icon-dark" class="fa-solid fa-moon text-xs dark:hidden"></i>
       </button>
     </div>
   </header>
@@ -516,6 +512,7 @@
         <button onclick="setZoom('day')" id="zoom-day" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition duration-150">일</button>
         <button onclick="setZoom('week')" id="zoom-week" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition duration-150">주</button>
         <button onclick="setZoom('month')" id="zoom-month" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition duration-150">월</button>
+        <button onclick="autoFitTimeline()" id="zoom-fit" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition duration-150 text-slate-600 dark:text-slate-400">전체보기</button>
       </div>
     </div>
   </section>
@@ -970,27 +967,7 @@
     </div>
   </dialog>
 
-  <!-- Project Settings Modal -->
-  <dialog id="project-settings-modal" class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 p-6 shadow-2xl w-96 max-w-full backdrop:bg-black/45 backdrop:backdrop-blur-sm font-sans text-xs">
-    <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3 mb-4">
-      <h3 class="text-sm font-bold"><i class="fa-solid fa-gear text-indigo-500 mr-1.5"></i> 프로젝트 설정</h3>
-      <button onclick="closeProjectSettingsModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><i class="fa-solid fa-xmark text-sm"></i></button>
-    </div>
-    <div class="space-y-4">
-      <div>
-        <label class="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1.5">프로젝트 시작일 (Project Start Date)</label>
-        <input type="date" id="proj-settings-start-date" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-850 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs">
-      </div>
-      <div>
-        <label class="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1.5">프로젝트 종료일 (Project End Date)</label>
-        <input type="date" id="proj-settings-end-date" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-850 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs">
-      </div>
-    </div>
-    <div class="flex justify-end gap-2 mt-6 pt-3 border-t border-slate-100 dark:border-slate-800">
-      <button onclick="closeProjectSettingsModal()" class="px-4 py-2 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-lg transition font-semibold">취소</button>
-      <button onclick="saveProjectSettings()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition font-semibold shadow-md shadow-blue-500/10">적용</button>
-    </div>
-  </dialog>
+
 
   <!-- Holiday Settings Modal -->
   <dialog id="holiday-settings-modal" class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 p-6 shadow-2xl w-96 max-w-full backdrop:bg-black/45 backdrop:backdrop-blur-sm font-sans text-xs">
@@ -4533,7 +4510,7 @@
       
       // Setup cross-pane row hover highlights
       setupRowHoverHighlightHandlers();
-      tasks = JSON.parse(JSON.stringify(initialTasks));
+      tasks = [];
       initializeAssigneesList();
       
       if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
@@ -4661,7 +4638,7 @@
       drawDependencies();
     }
 
-    // Zooming factor controls
+     // Zooming factor controls
     function setZoom(level) {
       zoomLevel = level;
       ['day', 'week', 'month'].forEach(zoom => {
@@ -4674,6 +4651,12 @@
           btn.classList.add('text-slate-600', 'dark:text-slate-400');
         }
       });
+
+      const fitBtn = document.getElementById('zoom-fit');
+      if (fitBtn) {
+        fitBtn.classList.remove('bg-white', 'dark:bg-slate-700', 'text-blue-600', 'dark:text-white', 'shadow-sm');
+        fitBtn.classList.add('text-slate-600', 'dark:text-slate-400');
+      }
 
       if (level === 'day') baseDayWidth = 48;
       else if (level === 'week') baseDayWidth = 14;
@@ -4693,10 +4676,76 @@
 
     function handleZoomRange(val) {
       zoomSliderValue = parseInt(val);
+
+      const fitBtn = document.getElementById('zoom-fit');
+      if (fitBtn && fitBtn.classList.contains('shadow-sm')) {
+        fitBtn.classList.remove('bg-white', 'dark:bg-slate-700', 'text-blue-600', 'dark:text-white', 'shadow-sm');
+        fitBtn.classList.add('text-slate-600', 'dark:text-slate-400');
+      }
+
       calculateDayWidth();
       calculateTimelineSizes();
       refreshGantt();
       setTimeout(drawDependencies, 50);
+    }
+
+    function autoFitTimeline() {
+      if (tasks.length === 0) {
+        alert("일정 데이터가 없습니다.");
+        return;
+      }
+
+      calculateTimelineRange(tasks);
+
+      const tStart = timelineStart;
+      const tEnd = timelineEnd;
+      const totalDays = Math.ceil((tEnd.getTime() - tStart.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+
+      if (totalDays <= 0) return;
+
+      const scrollContainer = document.getElementById('timeline-body-scroll');
+      if (!scrollContainer) return;
+
+      const viewportWidth = scrollContainer.clientWidth;
+      if (!viewportWidth || viewportWidth <= 0) return;
+
+      let targetDayWidth = viewportWidth / totalDays;
+      targetDayWidth = Math.max(1, Math.min(100, targetDayWidth));
+
+      baseDayWidth = targetDayWidth;
+      zoomSliderValue = 12;
+      
+      const slider = document.getElementById('zoom-range');
+      if (slider) slider.value = 12;
+
+      ['day', 'week', 'month'].forEach(zoom => {
+        const btn = document.getElementById(`zoom-${zoom}`);
+        if (btn) {
+          btn.classList.remove('bg-white', 'dark:bg-slate-700', 'text-blue-600', 'dark:text-white', 'shadow-sm');
+          btn.classList.add('text-slate-600', 'dark:text-slate-400');
+        }
+      });
+
+      const fitBtn = document.getElementById('zoom-fit');
+      if (fitBtn) {
+        fitBtn.classList.add('bg-white', 'dark:bg-slate-700', 'text-blue-600', 'dark:text-white', 'shadow-sm');
+        fitBtn.classList.remove('text-slate-600', 'dark:text-slate-400');
+      }
+
+      dayWidth = targetDayWidth;
+
+      calculateTimelineSizes();
+      refreshGantt();
+      setTimeout(drawDependencies, 150);
+    }
+
+    function loadDefaultProject() {
+      if (confirm("기본/템플릿 일정을 불러오시겠습니까? 현재 작성 중인 내용은 저장하지 않으면 유실됩니다.")) {
+        tasks = JSON.parse(JSON.stringify(initialTasks));
+        initializeAssigneesList();
+        runSchedulingPipeline();
+        alert("기본 일정을 불러왔습니다.");
+      }
     }
 
     function zoomInOut(direction) {
@@ -5330,31 +5379,7 @@
       });
     }
 
-    // --- PROJECT SETTINGS FUNCTIONS ---
-    function openProjectSettingsModal() {
-      document.getElementById('proj-settings-start-date').value = projectSettings.startDate || "";
-      document.getElementById('proj-settings-end-date').value = projectSettings.endDate || "";
-      document.getElementById('project-settings-modal').showModal();
-    }
-    function closeProjectSettingsModal() {
-      document.getElementById('project-settings-modal').close();
-    }
-    function saveProjectSettings() {
-      const startVal = document.getElementById('proj-settings-start-date').value;
-      const endVal = document.getElementById('proj-settings-end-date').value;
-      
-      if (startVal && endVal && new Date(startVal) > new Date(endVal)) {
-        alert("시작일은 종료일보다 이전이어야 합니다.");
-        return;
-      }
-      
-      pushStateToHistory();
-      projectSettings.startDate = startVal;
-      projectSettings.endDate = endVal;
-      
-      closeProjectSettingsModal();
-      runSchedulingPipeline();
-    }
+
 
     // --- HOLIDAY SETTINGS FUNCTIONS ---
     function openHolidaySettingsModal() {
