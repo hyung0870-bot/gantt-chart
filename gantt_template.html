@@ -241,28 +241,31 @@
   </div>
 
   <!-- Header -->
-  <header class="relative bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm px-6 py-4 flex flex-wrap items-center justify-between gap-4 z-50">
-    <div class="flex items-center gap-3">
-      <div class="bg-gradient-to-tr from-blue-600 to-indigo-600 p-2.5 rounded-xl text-white shadow-md shadow-blue-500/20">
-        <i class="fa-solid fa-network-wired text-xl"></i>
+  <header class="relative bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm px-4 py-1.5 flex flex-wrap items-center justify-between gap-3 z-50">
+    <div class="flex items-center gap-2">
+      <div class="bg-gradient-to-tr from-blue-600 to-indigo-600 p-1.5 rounded-lg text-white shadow-md shadow-blue-500/10">
+        <i class="fa-solid fa-network-wired text-xs"></i>
       </div>
       <div>
-        <h1 class="text-xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
+        <h1 class="text-xs font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
           Enterprise Gantt Scheduler
         </h1>
       </div>
     </div>
 
     <!-- Actions -->
-    <div class="flex items-center flex-wrap gap-2.5">
+    <div class="flex items-center flex-wrap gap-2">
       <!-- File Management Dropdown -->
       <div class="relative">
-        <button onclick="toggleFileDropdown(event)" class="px-3.5 py-2 text-sm font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center gap-2">
-          <i class="fa-solid fa-folder-open text-amber-500"></i> 파일 관리 <i class="fa-solid fa-chevron-down text-[10px]"></i>
+        <button onclick="toggleFileDropdown(event)" class="px-2.5 py-1 text-xs font-semibold rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-folder-open text-amber-500"></i> 파일 관리 <i class="fa-solid fa-chevron-down text-[9px]"></i>
         </button>
         <div id="file-dropdown-menu" class="hidden absolute left-0 mt-2 w-52 bg-white dark:bg-slate-850 rounded-lg border border-slate-200 dark:border-slate-700 shadow-xl z-100 py-1 text-xs">
           <button onclick="createNewProject()" class="w-full text-left px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
             <i class="fa-solid fa-file-circle-plus text-blue-500 w-4"></i> 새 프로젝트
+          </button>
+          <button onclick="loadDefaultProject()" class="w-full text-left px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
+            <i class="fa-solid fa-cloud-arrow-down text-teal-500 w-4"></i> 기본 일정 불러오기
           </button>
           <button onclick="saveProjectToLocal()" class="w-full text-left px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
             <i class="fa-solid fa-floppy-disk text-emerald-500 w-4"></i> 로컬 저장
@@ -287,84 +290,77 @@
       </div>
 
       <!-- Undo / Redo Actions -->
-      <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-0.5 rounded-lg mr-1">
-        <button onclick="undo()" id="btn-undo" title="실행 취소 (Ctrl+Z)" class="w-8 h-8 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition disabled:opacity-40" disabled>
+      <div class="flex items-center gap-0.5 bg-slate-100 dark:bg-slate-800 p-0.5 rounded-md mr-0.5">
+        <button onclick="undo()" id="btn-undo" title="실행 취소 (Ctrl+Z)" class="w-6 h-6 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition disabled:opacity-40 text-[10px]" disabled>
           <i class="fa-solid fa-arrow-rotate-left"></i>
         </button>
-        <button onclick="redo()" id="btn-redo" title="다시 실행 (Ctrl+Y)" class="w-8 h-8 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition disabled:opacity-40" disabled>
+        <button onclick="redo()" id="btn-redo" title="다시 실행 (Ctrl+Y)" class="w-6 h-6 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition disabled:opacity-40 text-[10px]" disabled>
           <i class="fa-solid fa-arrow-rotate-right"></i>
         </button>
       </div>
 
       <!-- Row Move Actions -->
-      <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-0.5 rounded-lg mr-1" title="작업 순서 변경">
-        <button onclick="moveSelectedTaskRow('up')" id="btn-move-up" title="작업 위로 올리기" class="w-8 h-8 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition">
+      <div class="flex items-center gap-0.5 bg-slate-100 dark:bg-slate-800 p-0.5 rounded-md mr-0.5" title="작업 순서 변경">
+        <button onclick="moveSelectedTaskRow('up')" id="btn-move-up" title="작업 위로 올리기" class="w-6 h-6 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition text-[10px]">
           <i class="fa-solid fa-arrow-up"></i>
         </button>
-        <button onclick="moveSelectedTaskRow('down')" id="btn-move-down" title="작업 아래로 내리기" class="w-8 h-8 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition">
+        <button onclick="moveSelectedTaskRow('down')" id="btn-move-down" title="작업 아래로 내리기" class="w-6 h-6 flex items-center justify-center text-slate-500 hover:bg-white dark:hover:bg-slate-700 rounded transition text-[10px]">
           <i class="fa-solid fa-arrow-down"></i>
         </button>
       </div>
 
       <!-- Custom Column Addition -->
-      <button onclick="openAddColumnModal()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
+      <button onclick="openAddColumnModal()" class="px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
         <i class="fa-solid fa-plus text-emerald-500"></i> 열 추가
       </button>
 
       <!-- WBS Freeze Panes -->
-      <button id="btn-freeze" onclick="toggleFreezePanes()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 text-slate-700 dark:text-slate-300" title="선택한 셀의 좌측 열들을 고정합니다.">
+      <button id="btn-freeze" onclick="toggleFreezePanes()" class="px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5 text-slate-700 dark:text-slate-300" title="선택한 셀의 좌측 열들을 고정합니다.">
         <i class="fa-solid fa-snowflake text-sky-500"></i> <span id="freeze-btn-text">틀고정 설정</span>
       </button>
 
       <!-- WBS Assignee Manager -->
-      <button onclick="openAssigneesModal()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
+      <button onclick="openAssigneesModal()" class="px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
         <i class="fa-solid fa-users text-blue-500"></i> 담당자 관리
       </button>
 
       <!-- MH Trend Chart Trigger -->
-      <button onclick="openMHTrendModal()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
+      <button onclick="openMHTrendModal()" class="px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
         <i class="fa-solid fa-chart-column text-amber-500"></i> MH 추이 차트
       </button>
 
-      <!-- Project Settings -->
-      <button onclick="openProjectSettingsModal()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
-        <i class="fa-solid fa-gear text-indigo-500"></i> 프로젝트 설정
-      </button>
-
       <!-- Holiday Settings -->
-      <button onclick="openHolidaySettingsModal()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 text-slate-700 dark:text-slate-300">
+      <button onclick="openHolidaySettingsModal()" class="px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
         <i class="fa-solid fa-umbrella text-rose-500"></i> 휴일 설정
       </button>
 
       <!-- Onboarding Tutorial Trigger -->
-      <button onclick="toggleTutorialGuide()" class="px-3.5 py-2 text-sm font-semibold rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/60 transition flex items-center gap-2">
+      <button onclick="toggleTutorialGuide()" class="px-2.5 py-1 text-xs font-semibold rounded-md bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/60 transition flex items-center gap-1.5">
         <i class="fa-solid fa-graduation-cap"></i> 초보자 가이드
       </button>
 
       <!-- Import/Export -->
-      <button onclick="triggerExcelImport()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2">
+      <button onclick="triggerExcelImport()" class="px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
         <i class="fa-solid fa-file-import text-blue-500"></i> Excel 불러오기
       </button>
       <input type="file" id="excel-file-input" class="hidden" accept=".xlsx, .xls" onchange="importExcel(event)">
       
-      <button onclick="exportToExcel()" class="px-3.5 py-2 text-sm font-medium rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white transition flex items-center gap-2 shadow-sm shadow-emerald-500/10">
+      <button onclick="exportToExcel()" class="px-2.5 py-1 text-xs font-semibold rounded-md bg-emerald-600 hover:bg-emerald-700 text-white transition flex items-center gap-1.5 shadow-sm shadow-emerald-500/10">
         <i class="fa-solid fa-file-export"></i> Excel 저장
       </button>
 
-      <button onclick="openPrintModal()" class="px-3.5 py-2 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-2 text-slate-700 dark:text-slate-300" title="현재 화면을 A3 PDF로 인쇄합니다.">
+      <button onclick="openPrintModal()" class="px-2.5 py-1 text-xs font-semibold rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5 text-slate-700 dark:text-slate-300" title="현재 화면을 A3 PDF로 인쇄합니다.">
         <i class="fa-solid fa-print text-purple-500"></i> PDF 인쇄 (A3)
       </button>
 
-
-
-      <button onclick="openAddTaskModal()" class="px-3.5 py-2 text-sm font-medium rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition flex items-center gap-2 shadow-sm shadow-blue-500/10">
+      <button onclick="openAddTaskModal()" class="px-2.5 py-1 text-xs font-semibold rounded-md bg-blue-600 hover:bg-blue-700 text-white transition flex items-center gap-1.5 shadow-sm shadow-blue-500/10">
         <i class="fa-solid fa-plus"></i> 작업 추가
       </button>
 
       <!-- Theme Switcher -->
-      <button onclick="toggleTheme()" class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition text-slate-500 dark:text-slate-400">
-        <i id="theme-icon" class="fa-solid fa-sun text-lg hidden dark:inline"></i>
-        <i id="theme-icon-dark" class="fa-solid fa-moon text-lg dark:hidden"></i>
+      <button onclick="toggleTheme()" class="p-1.5 rounded-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition text-slate-500 dark:text-slate-400">
+        <i id="theme-icon" class="fa-solid fa-sun text-xs hidden dark:inline"></i>
+        <i id="theme-icon-dark" class="fa-solid fa-moon text-xs dark:hidden"></i>
       </button>
     </div>
   </header>
@@ -516,6 +512,7 @@
         <button onclick="setZoom('day')" id="zoom-day" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition duration-150">일</button>
         <button onclick="setZoom('week')" id="zoom-week" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition duration-150">주</button>
         <button onclick="setZoom('month')" id="zoom-month" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition duration-150">월</button>
+        <button onclick="autoFitTimeline()" id="zoom-fit" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition duration-150 text-slate-600 dark:text-slate-400">전체보기</button>
       </div>
     </div>
   </section>
@@ -970,27 +967,7 @@
     </div>
   </dialog>
 
-  <!-- Project Settings Modal -->
-  <dialog id="project-settings-modal" class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 p-6 shadow-2xl w-96 max-w-full backdrop:bg-black/45 backdrop:backdrop-blur-sm font-sans text-xs">
-    <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3 mb-4">
-      <h3 class="text-sm font-bold"><i class="fa-solid fa-gear text-indigo-500 mr-1.5"></i> 프로젝트 설정</h3>
-      <button onclick="closeProjectSettingsModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><i class="fa-solid fa-xmark text-sm"></i></button>
-    </div>
-    <div class="space-y-4">
-      <div>
-        <label class="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1.5">프로젝트 시작일 (Project Start Date)</label>
-        <input type="date" id="proj-settings-start-date" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-850 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs">
-      </div>
-      <div>
-        <label class="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1.5">프로젝트 종료일 (Project End Date)</label>
-        <input type="date" id="proj-settings-end-date" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-850 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs">
-      </div>
-    </div>
-    <div class="flex justify-end gap-2 mt-6 pt-3 border-t border-slate-100 dark:border-slate-800">
-      <button onclick="closeProjectSettingsModal()" class="px-4 py-2 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-lg transition font-semibold">취소</button>
-      <button onclick="saveProjectSettings()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition font-semibold shadow-md shadow-blue-500/10">적용</button>
-    </div>
-  </dialog>
+
 
   <!-- Holiday Settings Modal -->
   <dialog id="holiday-settings-modal" class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 p-6 shadow-2xl w-96 max-w-full backdrop:bg-black/45 backdrop:backdrop-blur-sm font-sans text-xs">
@@ -1200,20 +1177,1525 @@
     // Data structures loaded from Python generator
     // INITIAL_DATA_PLACEHOLDER will be replaced with JSON string by Python script.
     const initialTasks = [
-      {"WBS": "1", "TaskName": "프로젝트 기획 및 설계", "StartDate": "2026-06-01", "EndDate": "2026-06-07", "Progress": 90, "Predecessors": "", "Assignees": "", "Type": "project", "Fixing": "None"},
-      {"WBS": "1.1", "TaskName": "요구사항 분석", "StartDate": "2026-06-01", "EndDate": "2026-06-03", "Progress": 100, "Predecessors": "", "Assignees": "김철수, 박지민", "Type": "task", "Fixing": "Fix Duration"},
-      {"WBS": "1.2", "TaskName": "UI/UX 스토리보드 작성", "StartDate": "2026-06-03", "EndDate": "2026-06-05", "Progress": 100, "Predecessors": "1.1FS", "Assignees": "이영희", "Type": "task", "Fixing": "Fix StartDate"},
-      {"WBS": "1.3", "TaskName": "기획안 승인 및 검토", "StartDate": "2026-06-06", "EndDate": "2026-06-07", "Progress": 50, "Predecessors": "1.2FS", "Assignees": "김철수, 이영희", "Type": "task", "Fixing": "None"},
-      {"WBS": "2", "TaskName": "시스템 개발", "StartDate": "2026-06-08", "EndDate": "2026-06-25", "Progress": 20, "Predecessors": "1FS", "Assignees": "", "Type": "project", "Fixing": "None"},
-      {"WBS": "2.1", "TaskName": "데이터베이스 및 백엔드 설계", "StartDate": "2026-06-08", "EndDate": "2026-06-12", "Progress": 70, "Predecessors": "", "Assignees": "박지민, 최수민", "Type": "task", "Fixing": "Fix Duration"},
-      {"WBS": "2.2", "TaskName": "핵심 API 기능 구현", "StartDate": "2026-06-13", "EndDate": "2026-06-20", "Progress": 20, "Predecessors": "2.1FS", "Assignees": "최수민", "Type": "task", "Fixing": "None"},
-      {"WBS": "2.3", "TaskName": "프론트엔드 퍼블리싱 및 컴포넌트 개발", "StartDate": "2026-06-10", "EndDate": "2026-06-18", "Progress": 15, "Predecessors": "1.2FS", "Assignees": "이영희, 강동욱", "Type": "task", "Fixing": "None"},
-      {"WBS": "2.4", "TaskName": "API 연동 및 화면 개발", "StartDate": "2026-06-19", "EndDate": "2026-06-25", "Progress": 0, "Predecessors": "2.2FS,2.3SS", "Assignees": "이영희, 강동욱, 최수민", "Type": "task", "Fixing": "None"},
-      {"WBS": "3", "TaskName": "테스트 및 배포", "StartDate": "2026-06-26", "EndDate": "2026-07-02", "Progress": 0, "Predecessors": "2FS", "Assignees": "", "Type": "project", "Fixing": "None"},
-      {"WBS": "3.1", "TaskName": "통합 및 시스템 테스트", "StartDate": "2026-06-26", "EndDate": "2026-06-30", "Progress": 0, "Predecessors": "", "Assignees": "김철수, 박지민", "Type": "task", "Fixing": "None"},
-      {"WBS": "3.2", "TaskName": "사용자 인수 테스트(UAT)", "StartDate": "2026-07-01", "EndDate": "2026-07-02", "Progress": 0, "Predecessors": "3.1FS", "Assignees": "김철수", "Type": "task", "Fixing": "Fix EndDate"},
-      {"WBS": "3.3", "TaskName": "실서버 배포 완료", "StartDate": "2026-07-02", "EndDate": "2026-07-02", "Progress": 0, "Predecessors": "3.2FS", "Assignees": "박지민, 최수민", "Type": "milestone", "Fixing": "None"}
-    ];
+  {
+    "WBS": "1",
+    "TaskName": "Project start",
+    "StartDate": "2026-03-01",
+    "EndDate": "2026-03-01",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "milestone",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2",
+    "TaskName": "Basic Design",
+    "StartDate": "2026-03-01",
+    "EndDate": "2026-06-30",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "3",
+    "TaskName": "기자재 견적 및 VP 접수",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "4",
+    "TaskName": "Technical report - Blow Down and Vent system",
+    "StartDate": "2026-03-16",
+    "EndDate": "2026-08-31",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "5",
+    "TaskName": "인력채용",
+    "StartDate": "2026-05-15",
+    "EndDate": "2026-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6",
+    "TaskName": "Engineering work",
+    "StartDate": "2026-07-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "7",
+    "TaskName": "상세 설계 업체 선정",
+    "StartDate": "2026-03-16",
+    "EndDate": "2026-08-31",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "8",
+    "TaskName": "1st 3D Modeling Review",
+    "StartDate": "2026-11-01",
+    "EndDate": "2026-11-15",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "9",
+    "TaskName": "2nd 3D Modeling Review",
+    "StartDate": "2027-02-01",
+    "EndDate": "2027-02-12",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "10",
+    "TaskName": "Packaging 업체 발굴 및 견적접수",
+    "StartDate": "2026-09-01",
+    "EndDate": "2027-03-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "11",
+    "TaskName": "최종 물량 및 재료비 산정",
+    "StartDate": "2027-01-01",
+    "EndDate": "2027-04-15",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "12",
+    "TaskName": "AIP 준비 및 획득",
+    "StartDate": "2026-12-01",
+    "EndDate": "2027-04-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "13",
+    "TaskName": "원가 분석 및 최적화",
+    "StartDate": "2027-04-15",
+    "EndDate": "2027-05-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "14",
+    "TaskName": "Basic Design for 2nd Line up",
+    "StartDate": "2027-03-01",
+    "EndDate": "2027-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.1",
+    "TaskName": "오션 문서 확보, Rule 검토",
+    "StartDate": "2026-03-01",
+    "EndDate": "2026-05-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.1.1",
+    "TaskName": "Project Spec. 검토 및 선정",
+    "StartDate": "2026-03-01",
+    "EndDate": "2026-04-30",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.1.2",
+    "TaskName": "Rule & Code Review",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-05-31",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.1.3",
+    "TaskName": "오션 문서 확보",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-05-31",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.2",
+    "TaskName": "Basic Design & Specification - Process",
+    "StartDate": "2026-03-01",
+    "EndDate": "2026-06-15",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.2.1",
+    "TaskName": "PFD / HMB",
+    "StartDate": "2026-03-01",
+    "EndDate": "2026-03-31",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.2.2",
+    "TaskName": "P&ID",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-04-30",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.2.3",
+    "TaskName": "Process Datasheet",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-15",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.2.4",
+    "TaskName": "Line Hydarulic Calculation",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-04-30",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.2.5",
+    "TaskName": "Relief Load Calculation",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-06-15",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.3",
+    "TaskName": "Basic Design & Specification - Piping",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.3.1",
+    "TaskName": "Piping Material Specification (Requirement specification - Piping)",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-30",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.3.2",
+    "TaskName": "Specification for piping stress analysis",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-15",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.3.3",
+    "TaskName": "Standard Drawing for Standard Piping Support",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-30",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.4",
+    "TaskName": "Basic Design & Specification - Machinery",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-15",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.4.1",
+    "TaskName": "Specification for LNG Boosting Pump",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-15",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.4.2",
+    "TaskName": "Specification for Centrifugal Pump",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-15",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.4.3",
+    "TaskName": "Specifiaction for Pressure Vessel",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-15",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.5",
+    "TaskName": "Basic Design & Specification - E&I",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.5.1",
+    "TaskName": "Electrical Load List",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-30",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.5.2",
+    "TaskName": "Single Line Diagram",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-30",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.5.3",
+    "TaskName": "Specifiaction for Valve",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-15",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.5.4",
+    "TaskName": "Overview diagram - Regas System Topology (Control System Configuration Diagram)",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-30",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.5.5",
+    "TaskName": "Requirement specification - General - Control and automation",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-30",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.5.6",
+    "TaskName": "Standard Drawing for E&I",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-30",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.6",
+    "TaskName": "Basic Design & Specification - Structure",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.6.1",
+    "TaskName": "Standard Drawing for Structure",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-30",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.7",
+    "TaskName": "Basic Design & Specification - Steel",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.7.1",
+    "TaskName": "Specification for Steel Outfitting",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-30",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.7.2",
+    "TaskName": "Standard Drawing for Steel Outfitting",
+    "StartDate": "2026-04-01",
+    "EndDate": "2026-06-30",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.8",
+    "TaskName": "Mechanical Procurement Engineering",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.8.1",
+    "TaskName": "Equipment(Stationary&Rotating) RFQ 작성",
+    "StartDate": "2026-06-15",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.8.2",
+    "TaskName": "Equipment 견적 접수, VP접수, Technical Evaluation",
+    "StartDate": "2026-07-01",
+    "EndDate": "2026-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.8.3",
+    "TaskName": "Equipment list",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.9",
+    "TaskName": "Piping Procurement Engineering",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.9.1",
+    "TaskName": "Manual Valve RFQ 작성",
+    "StartDate": "2026-06-15",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.9.2",
+    "TaskName": "Manual Valve 견적 접수, VP 접수, Technical Evaluation",
+    "StartDate": "2026-07-01",
+    "EndDate": "2026-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.9.3",
+    "TaskName": "Manual Valve list",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.10",
+    "TaskName": "E&I Procurement Engineering",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.10.1",
+    "TaskName": "E&I(Contorl valve, Instrument, etc) RFQ 작성",
+    "StartDate": "2026-06-15",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.10.2",
+    "TaskName": "계기 견적 접수, VP 접수, Technical Evaluation",
+    "StartDate": "2026-07-01",
+    "EndDate": "2026-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.10.3",
+    "TaskName": "E&I equipment list",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.1",
+    "TaskName": "Engineering work - Process",
+    "StartDate": "2026-06-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.1.1",
+    "TaskName": "Control Logic",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.1.2",
+    "TaskName": "Piping list - Process data",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.1.3",
+    "TaskName": "Equipment List",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.1.4",
+    "TaskName": "Function chart - Cause and Effect",
+    "StartDate": "2026-07-01",
+    "EndDate": "2026-09-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.1.5",
+    "TaskName": "Technical report - Blow Down and Vent system",
+    "StartDate": "2026-10-01",
+    "EndDate": "2026-12-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.1.6",
+    "TaskName": "Miscellaneous",
+    "StartDate": "2027-01-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.2",
+    "TaskName": "Engineering work - Piping",
+    "StartDate": "2026-08-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.2.1",
+    "TaskName": "System description - Philosophy for Protection against Cryogenic Leak",
+    "StartDate": "2026-08-01",
+    "EndDate": "2026-08-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.2.2",
+    "TaskName": "Plot Plan",
+    "StartDate": "2026-09-01",
+    "EndDate": "2026-10-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.2.3",
+    "TaskName": "Equipment Location Plan",
+    "StartDate": "2026-09-01",
+    "EndDate": "2026-10-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.2.4",
+    "TaskName": "Piping isometric drawing",
+    "StartDate": "2026-11-01",
+    "EndDate": "2026-12-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.2.5",
+    "TaskName": "Piping Plan",
+    "StartDate": "2026-11-01",
+    "EndDate": "2026-12-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.2.6",
+    "TaskName": "Miscellaneous",
+    "StartDate": "2027-01-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.3",
+    "TaskName": "Engineering work - Machinery",
+    "StartDate": "2026-06-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.3.1",
+    "TaskName": "Requirement specification - Preservation, re-preservation and de-preservation",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-07-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.3.2",
+    "TaskName": "Equipment Data Sheet - Pump / Compressor / Heater",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-07-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.3.3",
+    "TaskName": "Operating instructions - Regas Module & Suction Drum Skid - Material Handling Procedure",
+    "StartDate": "2026-07-01",
+    "EndDate": "2026-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.3.4",
+    "TaskName": "Part list (class B) - Spare & Special Tools",
+    "StartDate": "2026-09-01",
+    "EndDate": "2026-09-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.3.5",
+    "TaskName": "Miscellaneous",
+    "StartDate": "2026-10-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.4",
+    "TaskName": "Engineering work - Electrical",
+    "StartDate": "2026-06-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.4.1",
+    "TaskName": "Layout Drawing - Regas Module - Hazardous Area Classification (Hazardous Area Classification)",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-07-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.4.2",
+    "TaskName": "Electrical Cable Sizing Calculation",
+    "StartDate": "2026-08-01",
+    "EndDate": "2026-10-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.4.3",
+    "TaskName": "Electrical Cable Schedule",
+    "StartDate": "2026-08-01",
+    "EndDate": "2026-10-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.4.4",
+    "TaskName": "Main Cable Route Layout",
+    "StartDate": "2026-10-01",
+    "EndDate": "2026-10-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.4.5",
+    "TaskName": "Grounding & Lightning Calculation",
+    "StartDate": "2026-10-01",
+    "EndDate": "2026-10-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.4.6",
+    "TaskName": "Grounding & Lightning Protection Layout",
+    "StartDate": "2026-11-01",
+    "EndDate": "2026-11-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.4.7",
+    "TaskName": "Miscellaneous",
+    "StartDate": "2026-12-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.5",
+    "TaskName": "Engineering work - Instrument",
+    "StartDate": "2026-06-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.5.1",
+    "TaskName": "System description - ESD Hierarchy",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.5.2",
+    "TaskName": "System description - ESD and PSD Philosophy",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.5.3",
+    "TaskName": "System description - Control Philosophy",
+    "StartDate": "2026-07-01",
+    "EndDate": "2026-07-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.5.4",
+    "TaskName": "Block diagram",
+    "StartDate": "2026-07-01",
+    "EndDate": "2026-07-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.5.5",
+    "TaskName": "Instrument Wiring & Connection List",
+    "StartDate": "2026-07-01",
+    "EndDate": "2026-08-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.5.6",
+    "TaskName": "Instrument Logic & Loop Diagram",
+    "StartDate": "2026-08-01",
+    "EndDate": "2026-10-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.5.7",
+    "TaskName": "Fire & Gas Detector Location Plan Layout",
+    "StartDate": "2026-11-01",
+    "EndDate": "2026-11-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.5.8",
+    "TaskName": "Piping & Tubing Hook-up Drawing",
+    "StartDate": "2026-11-01",
+    "EndDate": "2026-12-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.5.9",
+    "TaskName": "Miscellaneous",
+    "StartDate": "2027-01-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.6",
+    "TaskName": "Engineering work - ETC",
+    "StartDate": "2026-11-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.6.1",
+    "TaskName": "Quality plan - Shipment & FAT schedule",
+    "StartDate": "2026-11-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "6.6.2",
+    "TaskName": "Shipping list - Procurment and Expediting plan",
+    "StartDate": "2026-11-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.11",
+    "TaskName": "상세설계 업체 선정",
+    "StartDate": "2026-03-16",
+    "EndDate": "2026-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.11.1",
+    "TaskName": "3D 모델 및 구조설계 업체 발굴 및 예산 수립",
+    "StartDate": "2026-03-16",
+    "EndDate": "2026-04-15",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.11.2",
+    "TaskName": "상세설계 업무 Scope 및 설계 성과물 정의",
+    "StartDate": "2026-04-15",
+    "EndDate": "2026-05-15",
+    "Progress": 100,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.11.3",
+    "TaskName": "상세 설계 업무 RFQ 작성",
+    "StartDate": "2026-05-15",
+    "EndDate": "2026-06-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.11.4",
+    "TaskName": "업체별 설계 견적 접수 및 업체 평가(TBE)",
+    "StartDate": "2026-07-01",
+    "EndDate": "2026-07-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.11.5",
+    "TaskName": "업체 선정 및 계약 체결",
+    "StartDate": "2026-08-01",
+    "EndDate": "2026-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.12",
+    "TaskName": "Layout Engineering",
+    "StartDate": "2026-09-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.12.1",
+    "TaskName": "Machinery Arrangement",
+    "StartDate": "2026-09-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.12.2",
+    "TaskName": "Escape Route Arrangement",
+    "StartDate": "2026-09-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.12.3",
+    "TaskName": "Material Handling Route Arrangement",
+    "StartDate": "2026-09-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.12.4",
+    "TaskName": "Process Line and Large Size Line Arrangement",
+    "StartDate": "2026-09-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.12.5",
+    "TaskName": "Drain Coaming Arrangement",
+    "StartDate": "2026-09-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.12.6",
+    "TaskName": "Platform / Ladder Arrangement",
+    "StartDate": "2026-09-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.12.7",
+    "TaskName": "Cable Tray 배치 설계",
+    "StartDate": "2026-09-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.12.8",
+    "TaskName": "F&G Detector Arrangement",
+    "StartDate": "2026-09-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.13",
+    "TaskName": "Calculation, Analysis, Study",
+    "StartDate": "2026-09-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.13.1",
+    "TaskName": "Structural Strength Calculation",
+    "StartDate": "2026-09-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.13.2",
+    "TaskName": "Pipe Stress Analysis",
+    "StartDate": "2026-09-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.14",
+    "TaskName": "3D Model Review",
+    "StartDate": "2026-11-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.14.1",
+    "TaskName": "1st 3D Modeling Review",
+    "StartDate": "2026-11-01",
+    "EndDate": "2026-11-15",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.14.2",
+    "TaskName": "2nd 3D Modeling Review",
+    "StartDate": "2027-02-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.15",
+    "TaskName": "BOM 산출",
+    "StartDate": "2026-11-01",
+    "EndDate": "2027-02-28",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.15.1",
+    "TaskName": "1st 3D Modeling 기준 BOM 산출",
+    "StartDate": "2026-11-01",
+    "EndDate": "2026-11-15",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.15.2",
+    "TaskName": "2nd 3D Modeling Review 기준 BOM 산출",
+    "StartDate": "2027-02-01",
+    "EndDate": "2027-02-12",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.16",
+    "TaskName": "공종별 채용",
+    "StartDate": "2026-05-15",
+    "EndDate": "2026-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.16.1",
+    "TaskName": "충원 요청서 작성",
+    "StartDate": "2026-05-15",
+    "EndDate": "2026-05-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.16.2",
+    "TaskName": "공종별 Process 진행 및 채용 완료",
+    "StartDate": "2026-06-01",
+    "EndDate": "2026-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.17",
+    "TaskName": "Packaging 업체 발굴",
+    "StartDate": "2026-09-01",
+    "EndDate": "2027-05-21",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.17.1",
+    "TaskName": "국내외 Packaging 업체 조사 및 현지 실사 진행",
+    "StartDate": "2026-09-01",
+    "EndDate": "2026-11-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.17.2",
+    "TaskName": "Packaging RFQ 작성 및 견적 접수",
+    "StartDate": "2026-12-01",
+    "EndDate": "2027-03-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.17.3",
+    "TaskName": "TBE 수행 및 업체 선정",
+    "StartDate": "2027-02-22",
+    "EndDate": "2027-05-21",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.18",
+    "TaskName": "최종 물량 및 재료비 산정",
+    "StartDate": "2027-01-01",
+    "EndDate": "2027-04-15",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.18.1",
+    "TaskName": "물량표 작성, 재료비 산출",
+    "StartDate": "2027-01-01",
+    "EndDate": "2027-01-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.18.2",
+    "TaskName": "Packaging 공사비 산출",
+    "StartDate": "2027-02-01",
+    "EndDate": "2027-04-15",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.18.3",
+    "TaskName": "기타 부대 비용 산출",
+    "StartDate": "2027-01-01",
+    "EndDate": "2027-01-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.19",
+    "TaskName": "AIP 준비 및 획득",
+    "StartDate": "2026-12-01",
+    "EndDate": "2027-04-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.19.1",
+    "TaskName": "HAZID 업체 선정",
+    "StartDate": "2026-12-01",
+    "EndDate": "2026-12-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.19.2",
+    "TaskName": "HAZID Report",
+    "StartDate": "2027-01-01",
+    "EndDate": "2027-01-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.19.3",
+    "TaskName": "AIP 제출 및 승인",
+    "StartDate": "2027-02-01",
+    "EndDate": "2027-04-30",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "task",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "13.1",
+    "TaskName": "원가 분석 및 최적화 (for 가격 경쟁력)",
+    "StartDate": "2027-04-15",
+    "EndDate": "2027-05-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  },
+  {
+    "WBS": "2.20",
+    "TaskName": "Basic Design for 2nd Line up",
+    "StartDate": "2027-03-01",
+    "EndDate": "2027-08-31",
+    "Progress": 0,
+    "Predecessors": "",
+    "Assignees": "",
+    "Type": "project",
+    "Fixing": "None"
+  }
+];
 
     // Pre-configured training/onboarding schedule for beginners
     const trainingTasksDataset = [
@@ -3028,7 +4510,7 @@
       
       // Setup cross-pane row hover highlights
       setupRowHoverHighlightHandlers();
-      tasks = JSON.parse(JSON.stringify(initialTasks));
+      tasks = [];
       initializeAssigneesList();
       
       if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
@@ -3156,7 +4638,7 @@
       drawDependencies();
     }
 
-    // Zooming factor controls
+     // Zooming factor controls
     function setZoom(level) {
       zoomLevel = level;
       ['day', 'week', 'month'].forEach(zoom => {
@@ -3169,6 +4651,12 @@
           btn.classList.add('text-slate-600', 'dark:text-slate-400');
         }
       });
+
+      const fitBtn = document.getElementById('zoom-fit');
+      if (fitBtn) {
+        fitBtn.classList.remove('bg-white', 'dark:bg-slate-700', 'text-blue-600', 'dark:text-white', 'shadow-sm');
+        fitBtn.classList.add('text-slate-600', 'dark:text-slate-400');
+      }
 
       if (level === 'day') baseDayWidth = 48;
       else if (level === 'week') baseDayWidth = 14;
@@ -3188,10 +4676,76 @@
 
     function handleZoomRange(val) {
       zoomSliderValue = parseInt(val);
+
+      const fitBtn = document.getElementById('zoom-fit');
+      if (fitBtn && fitBtn.classList.contains('shadow-sm')) {
+        fitBtn.classList.remove('bg-white', 'dark:bg-slate-700', 'text-blue-600', 'dark:text-white', 'shadow-sm');
+        fitBtn.classList.add('text-slate-600', 'dark:text-slate-400');
+      }
+
       calculateDayWidth();
       calculateTimelineSizes();
       refreshGantt();
       setTimeout(drawDependencies, 50);
+    }
+
+    function autoFitTimeline() {
+      if (tasks.length === 0) {
+        alert("일정 데이터가 없습니다.");
+        return;
+      }
+
+      calculateTimelineRange(tasks);
+
+      const tStart = timelineStart;
+      const tEnd = timelineEnd;
+      const totalDays = Math.ceil((tEnd.getTime() - tStart.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+
+      if (totalDays <= 0) return;
+
+      const scrollContainer = document.getElementById('timeline-body-scroll');
+      if (!scrollContainer) return;
+
+      const viewportWidth = scrollContainer.clientWidth;
+      if (!viewportWidth || viewportWidth <= 0) return;
+
+      let targetDayWidth = viewportWidth / totalDays;
+      targetDayWidth = Math.max(1, Math.min(100, targetDayWidth));
+
+      baseDayWidth = targetDayWidth;
+      zoomSliderValue = 12;
+      
+      const slider = document.getElementById('zoom-range');
+      if (slider) slider.value = 12;
+
+      ['day', 'week', 'month'].forEach(zoom => {
+        const btn = document.getElementById(`zoom-${zoom}`);
+        if (btn) {
+          btn.classList.remove('bg-white', 'dark:bg-slate-700', 'text-blue-600', 'dark:text-white', 'shadow-sm');
+          btn.classList.add('text-slate-600', 'dark:text-slate-400');
+        }
+      });
+
+      const fitBtn = document.getElementById('zoom-fit');
+      if (fitBtn) {
+        fitBtn.classList.add('bg-white', 'dark:bg-slate-700', 'text-blue-600', 'dark:text-white', 'shadow-sm');
+        fitBtn.classList.remove('text-slate-600', 'dark:text-slate-400');
+      }
+
+      dayWidth = targetDayWidth;
+
+      calculateTimelineSizes();
+      refreshGantt();
+      setTimeout(drawDependencies, 150);
+    }
+
+    function loadDefaultProject() {
+      if (confirm("기본/템플릿 일정을 불러오시겠습니까? 현재 작성 중인 내용은 저장하지 않으면 유실됩니다.")) {
+        tasks = JSON.parse(JSON.stringify(initialTasks));
+        initializeAssigneesList();
+        runSchedulingPipeline();
+        alert("기본 일정을 불러왔습니다.");
+      }
     }
 
     function zoomInOut(direction) {
@@ -3825,31 +5379,7 @@
       });
     }
 
-    // --- PROJECT SETTINGS FUNCTIONS ---
-    function openProjectSettingsModal() {
-      document.getElementById('proj-settings-start-date').value = projectSettings.startDate || "";
-      document.getElementById('proj-settings-end-date').value = projectSettings.endDate || "";
-      document.getElementById('project-settings-modal').showModal();
-    }
-    function closeProjectSettingsModal() {
-      document.getElementById('project-settings-modal').close();
-    }
-    function saveProjectSettings() {
-      const startVal = document.getElementById('proj-settings-start-date').value;
-      const endVal = document.getElementById('proj-settings-end-date').value;
-      
-      if (startVal && endVal && new Date(startVal) > new Date(endVal)) {
-        alert("시작일은 종료일보다 이전이어야 합니다.");
-        return;
-      }
-      
-      pushStateToHistory();
-      projectSettings.startDate = startVal;
-      projectSettings.endDate = endVal;
-      
-      closeProjectSettingsModal();
-      runSchedulingPipeline();
-    }
+
 
     // --- HOLIDAY SETTINGS FUNCTIONS ---
     function openHolidaySettingsModal() {
